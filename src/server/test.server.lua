@@ -1,4 +1,4 @@
-local Connode = require(game:GetService("ReplicatedStorage").Common:WaitForChild("Connode"))
+local Connode = require(game:GetService("ReplicatedStorage").Common:WaitForChild("Connode_Plugin"):WaitForChild("Connode"))
 
 local line = Connode.Line.defineLine({
 
