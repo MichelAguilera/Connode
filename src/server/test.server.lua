@@ -1,6 +1,6 @@
 local Connode = require(game:GetService("ReplicatedStorage").Common:WaitForChild("Connode"))
 
-local line = Connode.defineLine({
+local line = Connode.Line.defineLine({
 
     separation = 10,
 
@@ -19,7 +19,7 @@ local line = Connode.defineLine({
 })
 
 local number = 5
-local curve = Connode.defineBezierCurve({
+local curve = Connode.Curve.defineBezierCurve({
 
     number_of_objects = number,
 
