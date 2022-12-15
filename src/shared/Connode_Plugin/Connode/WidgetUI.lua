@@ -1,11 +1,21 @@
+local WT = require(script.Parent.WidgetTemplates)
+local SW = require(script.Parent.Parent.StudioWidgets)
+
 Widget = {}
 Widget.__index = Widget
 
 function Widget.create(Parent)
-    local MainFrame = Instance.new("Frame")
-    MainFrame.Name = "MainFrame"
+    -- local MainFrame = WT.Frame("MainFrame", Parent)
+    local MainFrame = SW.CollapsibleTitledSection.new(
+        "MainFrame",--nameSuffix, 
+        "MainFrame",--titleText, 
+        true,--autoScalingList, 
+        true,--minimizable,
+        false--minimizedByDefault
+    )
     MainFrame.Parent = Parent
 
+    --[[
     -- MAIN FRAME CHILD
     local TabFrame = Instance.new("Frame")
     TabFrame.Name = "TabFrame"
@@ -47,7 +57,8 @@ function Widget.create(Parent)
     Separation_btn.Name = "Separation_btn"
     Separation_btn.Text = "Set Angle"
     Separation_btn.Parent = InputFrame_Line
-
+    ]]
+    return MainFrame
 end
 
 return Widget

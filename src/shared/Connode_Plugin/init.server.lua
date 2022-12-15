@@ -8,6 +8,8 @@ showMenu.ClickableWhenViewportHidden = false
 
 -- Variables
 local isOpen = false
+local widgetInitialized = false
+local _widget = nil
 
 -- Create new "DockWidgetPluginGuiInfo" object
 local WidgetInfo = DockWidgetPluginGuiInfo.new(
@@ -20,26 +22,38 @@ local WidgetInfo = DockWidgetPluginGuiInfo.new(
 	150     -- Minimum height of the floating window
 )
 
-local _widget = nil
-
 -- Functions
 local function createWidget()
+    print("Making widget")
+
     -- Create new widget GUI
     _widget = plugin:CreateDockWidgetPluginGui("ConnodeWidget", WidgetInfo)
     _widget.Title = "Connode Widget"
 
     WidgetUI.create(_widget)
+    widgetInitialized = true
 end
 
-local function destroyWidget()
-    _widget:Destroy()
+local function openWidget()
+    print("Opening widget")
+    _widget.Enabled = true
+end
+
+local function closeWidget()
+    print("Closing widget")
+    _widget.Enabled = false
 end
 
 local function onPluginClick()
-    if isOpen then
-        destroyWidget()
-    else
+
+    if not widgetInitialized then
         createWidget()
+    end
+
+    if isOpen then
+        closeWidget()
+    else
+        openWidget()
     end
 
     isOpen = not isOpen
